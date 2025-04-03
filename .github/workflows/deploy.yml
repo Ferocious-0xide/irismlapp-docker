@@ -12,6 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
+      
       - name: Login to Heroku Container Registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -20,7 +24,7 @@ jobs:
       
       - name: Build and Push Docker Image
         env:
-          HEROKU_APP_NAME: "irismlapp-docker"  
+          HEROKU_APP_NAME: "irismlapp-docker" 
         run: |
           docker build -t registry.heroku.com/$HEROKU_APP_NAME/web .
           docker push registry.heroku.com/$HEROKU_APP_NAME/web
