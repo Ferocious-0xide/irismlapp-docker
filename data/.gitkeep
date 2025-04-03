@@ -1,0 +1,2 @@
+# This file is a placeholder to ensure the data directory is included in Git
+# The actual model.pkl file will be created when train_model.py is run

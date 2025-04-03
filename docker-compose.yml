@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    image: iris-ml-api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - FLASK_APP=app/api.py
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
+    command: gunicorn --bind 0.0.0.0:5000 --workers 1 --threads 8 --timeout 0 app.api:app
